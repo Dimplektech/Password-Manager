@@ -23,6 +23,6 @@ A simple password manager built using Python and Tkinter. It allows users to gen
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/password-manager.git
+   git clone https://github.com/Dimplektech/Password-Manager.git
    cd password-manager
 
