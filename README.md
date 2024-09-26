@@ -1,4 +1,3 @@
-# Password-Manager
 # Password Manager
 
 A simple password manager built using Python and Tkinter. It allows users to generate strong random passwords, save them securely to a file, and copy them to the clipboard automatically.
