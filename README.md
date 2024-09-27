@@ -1,27 +1,32 @@
 # Password Manager
 
-A simple password manager built using Python and Tkinter. It allows users to generate strong random passwords, save them securely to a file, and copy them to the clipboard automatically.
+## Project Overview
+
+This is a **Password Manager** application built using Python's **Tkinter** library for the graphical user interface (GUI). It allows users to:
+- Generate strong random passwords.
+- Save website credentials (website, email/username, password).
+- Search for stored credentials by website name.
+- Automatically copy the generated password to the clipboard.
+
+All credentials are stored in a **JSON** file (`data_details.json`), and case-insensitive search functionality ensures that the website name is found, regardless of case differences.
 
 ## Features
+1. **Password Generator**: Creates a strong password with a mix of letters, numbers, and symbols.
+2. **Save Credentials**: Stores website credentials (website, email, and password) in a `data_details.json` file.
+3. **Search for Credentials**: Allows searching for saved credentials by website name.
+4. **Clipboard Copying**: Automatically copies the generated password to the clipboard.
+5. **Error Handling**: Handles file not found errors and prevents empty fields from being saved.
 
-- **Generate Strong Passwords**: Create random passwords with letters, numbers, and symbols.
-- **Copy to Clipboard**: Automatically copy the generated password to the clipboard for easy pasting.
-- **Save Passwords**: Store the generated passwords along with the website and username in a text file.
-- **User-Friendly Interface**: Simple UI built using Tkinter for easy password management.
-
-## Installation
+## Installation & Setup
 
 ### Prerequisites
+- **Python 3.x** installed on your system.
+- Required Python libraries:
+  - `tkinter` (for the GUI)
+  - `json` (for reading/writing JSON data)
+  - `pyperclip` (for clipboard functionality)
 
-- Python 3.x
-- The following Python libraries are required:
-  - `tkinter` (usually comes with Python)
-  - `pyperclip` (for copying the password to the clipboard)
-
-### Steps
-
+### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Dimplektech/Password-Manager.git
-   cd password-manager
-
+   git clone https://github.com/your-username/password-manager.git
