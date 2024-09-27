@@ -1,7 +1,9 @@
 import random
+from textwrap import indent
 from tkinter import *
 from tkinter import messagebox
 import pyperclip
+import json
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -31,25 +33,54 @@ def generate_password():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    is_ok = False
-    f = open("data_details.txt","a+")
+
     website = web_input.get()
     username = username_input.get()
     password = password_input.get()
+    new_data = {
+        website:{
+            "email":username,
+            "password":password
+        }
+
+    }
 
     if len(website) < 1 or   len(password) < 1:
         messagebox.showinfo(title="Error",message="Make sure You haven't left any field empty !!" )
     else:
-        is_ok = messagebox.askokcancel(title=website,message=f"These are the details entered :\n "
-                                                         f"Email : {username} \n Password: {password}.\n Are you ok to save?" )
-        if is_ok :
-            f.writelines(f"{website} ¦ {username} ¦ {password} \n")
-            password_input.delete(0,"end")
-            web_input.delete(0,"end")
-            f.close()
+        try:
+            with open("data_details.json","r") as data_file:
+                data = json.load(data_file)
+
+        except FileNotFoundError:
+            with open("data_details.json","w") as data_file:
+                json.dump(new_data,data_file,indent=4)
+        else:
+            data.update(new_data)
+            with open("data_details.json", "w") as data_file:
+                json.dump(data,data_file,indent=4)
 
 
+        password_input.delete(0,END)
+        web_input.delete(0,END)
 
+def find_password():
+    try:
+        with open("data_details.json","r") as data_file:
+            website = web_input.get()
+            data = json.load(data_file)
+    except FileNotFoundError:
+            messagebox.showinfo(title="Error",message="No Data file not found!")
+    else:
+        # Convert all keys in the data dict to lowercase
+        data_lower = {key.lower():value for key,value in data.items()}
+        website_lower =  website.lower()
+        if  website_lower in data_lower:
+            email= data_lower[website_lower]["email"]
+            password=data_lower[website_lower]["password"]
+            messagebox.showinfo(title=website.title(),message = f"Email: {email} \n Password: {password} ")
+        else:
+            messagebox.showinfo(title="Error",message=f"No details exists for {website} exists.")
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -85,6 +116,8 @@ gen_pass = Button(text="Generate Password",command=generate_password)
 gen_pass.grid(column=3,row=3)
 add_button = Button(text="Add",width=36,bg="skyblue",command=save)
 add_button.grid(column=1,row=5,columnspan=2)
+search_button= Button(text="Search",width=15,command=find_password)
+search_button.grid(column=3,row=1)
 
 
 
