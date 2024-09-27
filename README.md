@@ -29,4 +29,4 @@ All credentials are stored in a **JSON** file (`data_details.json`), and case-in
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/password-manager.git
+   https://github.com/Dimplektech/Password-Manager.git
